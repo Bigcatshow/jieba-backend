@@ -10,11 +10,9 @@ const port = 5000;
 app.use(cors());
 app.use(express.json());
 
-// Needed to get __dirname in ES module style
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Serve static files from "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 const jieba = new Jieba();
@@ -30,6 +28,21 @@ app.post('/segment', (req, res) => {
   }
   const result = jieba.cut(text);
   res.json({ segments: result });
+});
+
+// NEW /search route
+app.post('/search', (req, res) => {
+  const { query } = req.body;
+  if (!query) {
+    return res.status(400).json({ error: 'No query provided' });
+  }
+
+  // Segment the query text
+  const segments = jieba.cut(query);
+
+  // TODO: Replace with your real search implementation here,
+  // for now just return the segments as dummy "search results"
+  res.json({ results: segments });
 });
 
 app.listen(port, () => {
