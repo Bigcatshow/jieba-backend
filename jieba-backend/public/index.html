@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <title>Jieba 中文分词测试 + 词表搜索</title>
+</head>
+<body>
+    <h2>搜索词表</h2>
+    <input type="text" id="searchInput" placeholder="输入关键词搜索" />
+    <button onclick="searchWordList()">搜索</button>
+    <div id="searchResults"></div>
+
+    <script src="js/segmentit.min.js"></script>
+    <script src="js/lunr.zh.js"></script>
+    <script src="js/app.js"></script> <!-- your own script -->
+
+    <script>
+        // Jieba segmentation function (unchanged)
+        async function segmentText() {
+            const text = document.getElementById('textInput').value;
+            if (!text) return alert('请输入文本');
+
+            const response = await fetch('/segment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/const API_UR' },
+                body: JSON.stringify({ text })
+            });
+            const data = await response.json();
+
+            document.getElementById('result').innerText = data.segments.join(' | ');
+        }
+
+        // --- New code for searching word lists ---
+
+        let searchData = [];
+
+        // Load JSON file once at page load
+        fetch('search-data.json')
+            .then(res => res.json())
+            .then(data => {
+                searchData = data;
+            })
+            .catch(err => console.error('加载搜索数据失败:', err));
+
+        function searchWordList() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            if (!query) {
+                alert('请输入关键词');
+                return;
+            }
+
+            const results = searchData.filter(item =>
+                item.title.toLowerCase().includes(query) ||
+                item.content.toLowerCase().includes(query)
+            );
+
+            const container = document.getElementById('searchResults');
+            if (results.length === 0) {
+                container.innerHTML = '<p>未找到匹配结果</p>';
+                return;
+            }
+
+            container.innerHTML = results.map(item =>
+                `<div style="margin-bottom:1em;">
+                    <a href="${item.url}" target="_blank"><strong>${item.title}</strong></a>
+                    <p>${item.content}</p>
+                </div>`
+            ).join('');
+        }
+    </script>
+</body>
+</html>

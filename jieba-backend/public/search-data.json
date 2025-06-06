@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Chinese Word List",
+    "content": "Chinese Word List Chinese Word List 苹果 (apple), 香蕉 (banana), 橙子 (orange), 西瓜 (melon), 等等。",
+    "url": "pages/chinese-word-list.html",
+    "lang": "chinese"
+  },
+  {
+    "title": "English Word List",
+    "content": "English Word List English Word List apple, banana, orange, melon, etc.",
+    "url": "pages/english-word-list.html",
+    "lang": "english"
+  },
+  {
+    "title": "Japanese Word List",
+    "content": "Japanese Word List Japanese Word List りんご (apple), バナナ (banana), オレンジ (orange), メロン (melon), など。",
+    "url": "pages/japanese-word-list.html",
+    "lang": "japanese"
+  },
+  {
+    "title": "Korean Word List",
+    "content": "Korean Word List Korean Word List 사과 (apple), 바나나 (banana), 오렌지 (orange), 멜론 (melon), 등등.",
+    "url": "pages/korean-word-list.html",
+    "lang": "korean"
+  },
+  {
+    "title": "Russian Word List",
+    "content": "Russian Word List Russian Word List яблоко (apple), банан (banana), апельсин (orange), дыня (melon), и т.д.",
+    "url": "pages/russian-word-list.html",
+    "lang": "russian"
+  },
+  {
+    "title": "Vietnamese Word List",
+    "content": "Vietnamese Word List Vietnamese Word List Táo (apple), Chuối (banana), Cam (orange), Dưa hấu (melon), v.v.",
+    "url": "pages/vietnamese-word-list.html",
+    "lang": "vietnamese"
+  }
+]
